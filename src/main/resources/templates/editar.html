@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{master.html}"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Curso</title>
+</head>
+<body>
+<div class="container mt-5" layout:fragment="contenido_dinamico">
+    <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-6 ">
+            <h3>Editar Curso</h3>
+
+            <form th:action="@{''}" th:object="${curso}" class="mt-3" method="post">
+                <div class="mb-2">
+                    <label for="descripcion">Descripcion</label>
+                    <input type="text" id="descripcion" th:field="*{descripcion}" class="form-control">
+                </div>
+                <div class="mb-2">
+                    <label for="precio">Precio</label>
+                    <input type="text" id="precio" th:field="*{precio}" class="form-control">
+                </div>
+                <div class="text-end mt-3">
+                    <a href="/cursos" class="btn btn-ligth">Cancelar</a>
+                    <button class="btn btn-primary">Guardar</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

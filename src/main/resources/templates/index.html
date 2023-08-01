@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{master.html}"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Administración de Cursos</title>
+</head>
+<body>
+<div class="container mt-5" layout:fragment="contenido_dinamico">
+    <h1>Administración de Cursos</h1>
+
+    <div class="text-end">
+        <a href="/cursos/nuevo" class="btn btn-primary">Nuevo Curso</a>
+    </div>
+    <table class="table table-hover table-responsive">
+        <thead>
+        <tr>
+            <th>DESCRIPCION</th>
+            <th>PRECIO</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="curso : ${cursos}">
+            <td th:text="${curso.descripcion}"></td>
+            <td th:text="${curso.precio}"></td>
+            <td class="text-end">
+                <div class="btn-group btn-group-sm ">
+                    <a th:href="@{/cursos/{id}/editar(id=*{id})}" title="Editar">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                </div>
+                <div class="btn-group btn-group-sm ">
+                    <a href="#" class="btn btn-danger" title="Eliminar" onclick="eliminarCurso(this)">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                    <form th:action="@{/cursos/{id}/eliminar(id=*{curso.id})}" method="post" class="d-none"></form>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div layout:fragment="scripts">
+    <script>
+        function eliminarCurso(curso){
+        var ok= confirm('Esta seguro de eliminar el curso');
+        if(ok){
+        etiqueta.nextElementSibling.submit();
+        }
+    </script>
+
+</div>
+</body>
+</html>
